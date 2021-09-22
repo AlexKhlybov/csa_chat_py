@@ -6,10 +6,10 @@ import logging
 import select
 import time
 import logs.config_server_log
-from errors import IncorrectDataRecivedError
+from common.errors import IncorrectDataRecivedError
 from common.variables import *
 from common.utils import *
-from decos import log
+from common.decos import log
 
 # Инициализация логирования сервера.
 logger = logging.getLogger('server')
@@ -149,3 +149,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+

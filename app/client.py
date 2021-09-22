@@ -8,8 +8,8 @@ import threading
 import logs.config_client_log
 from common.variables import *
 from common.utils import *
-from errors import IncorrectDataRecivedError, ReqFieldMissingError, ServerError
-from decos import log
+from common.errors import IncorrectDataRecivedError, ReqFieldMissingError, ServerError
+from common.decos import log
 
 # Инициализация клиентского логера
 logger = logging.getLogger('client')
