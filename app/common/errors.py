@@ -1,7 +1,7 @@
 # Исключение  - некорректные данные получены от сокета
 class IncorrectDataRecivedError(Exception):
     def __str__(self):
-        return 'Принято некорректное сообщение от удалённого компьютера.'
+        return "Принято некорректное сообщение от удалённого компьютера."
 
 
 # Исключение - ошибка сервера
@@ -16,7 +16,7 @@ class ServerError(Exception):
 # исключение - аргумент функции не словарь.
 class NonDictInputError(Exception):
     def __str__(self):
-        return 'Аргумент функции должен быть словарём.'
+        return "Аргумент функции должен быть словарём."
 
 
 # Ошибка - отсутствует обязательное поле в принятом словаре.
@@ -25,4 +25,4 @@ class ReqFieldMissingError(Exception):
         self.missing_field = missing_field
 
     def __str__(self):
-        return f'В принятом словаре отсутствует обязательное поле {self.missing_field}.'
+        return f"В принятом словаре отсутствует обязательное поле {self.missing_field}."
