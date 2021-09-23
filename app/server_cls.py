@@ -7,6 +7,7 @@ from threading import Thread
 from app.common.decos import try_except_wrapper
 from app.common.utils import *
 from app.common.variables import *
+from app.common.descriptor import Port
 from app.logs.config_server_log import logger
 
 
@@ -25,11 +26,11 @@ class ServerThread(Thread):
 
 
 class Server:
-    __slots__ = ("bind_addr", "port", "logger", "socket", "clients", "listener", "messages", "names")
+    __slots__ = ("bind_addr", "_port", "logger", "socket", "clients", "listener", "messages", "names")
 
     TCP = (AF_INET, SOCK_STREAM)
     TIMEOUT = 5
-    # port = Port('_port')
+    port = Port('_port')
 
     def __init__(self, bind_addr, port):
         self.logger = logger
