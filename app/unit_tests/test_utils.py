@@ -5,7 +5,7 @@ import unittest
 
 from common.utils import *
 from common.variables import *
-from errors import NonDictInputError
+from app.common.errors import NonDictInputError
 
 
 # Тестовый класс для тестирования отпраки и получения, при создании требует словарь, который будет прогонятся

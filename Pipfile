@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 ipaddress = "*"
 tabulate = "*"
+icecream = "*"
+flake8 = "*"
 
 [dev-packages]
 

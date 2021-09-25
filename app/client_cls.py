@@ -5,11 +5,12 @@ from socket import AF_INET, SOCK_STREAM, socket
 from threading import Thread
 
 from app.common.decos import log, try_except_wrapper
+from app.common.descriptor import Addr, Port
 from app.common.errors import (IncorrectDataRecivedError, ReqFieldMissingError,
                                ServerError)
+from app.common.meta import ClientVerifier
 from app.common.utils import *
 from app.common.variables import *
-from app.common.descriptor import Port, Addr
 from app.logs.config_client_log import logger
 
 
@@ -41,12 +42,12 @@ def print_help():
     print(txt)
 
 
-class Client:
+class Client(metaclass=ClientVerifier):
     __slots__ = ("_addr", "_port", "name", "logger", "socket", "connected", "listener", "sender", "user_interface")
 
     TCP = (AF_INET, SOCK_STREAM)
-    addr = Addr('_addr')
-    port = Port('_port')
+    addr = Addr("_addr")
+    port = Port("_port")
 
     def __init__(self, addr, port, name):
         # Сообщаем о запуске
