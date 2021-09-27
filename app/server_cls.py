@@ -9,17 +9,19 @@ from app.common.descriptor import Port
 from app.common.meta import ServerVerifier
 from app.common.utils import *
 from app.common.variables import *
+from app.db.server_db import ServerStorage
 from app.logs.config_server_log import logger
 
 
 class ServerThread(Thread):
     __slots__ = ("func", "logger")
 
-    def __init__(self, func, logger):
+    def __init__(self, func, logger, storage):
         super().__init__()
         self.func = func
         self.logger = logger
         self.daemon = True
+        self.storage = storage
 
     @try_except_wrapper
     def run(self):
@@ -27,13 +29,13 @@ class ServerThread(Thread):
 
 
 class Server(metaclass=ServerVerifier):
-    __slots__ = ("bind_addr", "_port", "logger", "socket", "clients", "listener", "messages", "names")
+    __slots__ = ("bind_addr", "_port", "logger", "socket", "clients", "listener", "messages", "names", "storage")
 
     TCP = (AF_INET, SOCK_STREAM)
     TIMEOUT = 5
     port = Port("_port")
 
-    def __init__(self, bind_addr, port):
+    def __init__(self, bind_addr, port, storage):
         self.logger = logger
         self.bind_addr = bind_addr
         self.port = port
@@ -42,6 +44,7 @@ class Server(metaclass=ServerVerifier):
         self.messages = []
         # Словарь, содержащий имена пользователей и соответствующие им сокеты.
         self.names = dict()
+        self.storage = storage
 
     def start(self, request_count=5):
         self.socket = socket(*self.TCP)
@@ -49,9 +52,46 @@ class Server(metaclass=ServerVerifier):
         self.socket.bind((self.bind_addr, self.port))
         self.logger.info(f"Порт сервера - {self.port}| адресс - {self.bind_addr}")
         self.socket.listen(request_count)
-        self.listener = ServerThread(self.listen, self.logger)
+        self.listener = ServerThread(self.listen, self.logger, self.storage)
         self.listener.start()
-        self.listen()
+        self.__console()
+
+    def print_help(self):
+        txt = (
+            "Поддерживаемые комманды:\n"
+            "users - список известных пользователей\n"
+            "connected - список подключенных пользователей\n"
+            "loghist - история входов пользователя\n"
+            "exit - завершение работы сервера\n"
+            "help - вывод справки по поддерживаемым командамn\n"
+        )
+        print(txt)
+
+    def __console(self):
+        # Основной цикл сервера:
+        self.print_help()
+        while True:
+            command = input("Введите комманду: ")
+            if command == "help":
+                self.print_help()
+            elif command == "exit":
+                break
+            elif command == "users":
+                for user in sorted(self.storage.user_list()):
+                    print(f"Пользователь {user[0]}, последний вход: {user[1]}")
+            elif command == "connected":
+                for user in sorted(self.storage.active_user_list()):
+                    print(
+                        f"Пользователь {user[0]}, подключен: {user[1]}:{user[2]}, время установки соединения: {user[3]}"
+                    )
+            elif command == "loghist":
+                name = input(
+                    "Введите имя пользователя для просмотра истории. Для вывода всей истории, просто нажмите Enter: "
+                )
+                for user in sorted(self.storage.login_history(name)):
+                    print(f"Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}")
+            else:
+                print("Команда не распознана.")
 
     def listen(self):
         self.logger.info("Запусп прослушки")
@@ -106,6 +146,8 @@ class Server(metaclass=ServerVerifier):
             # Если такой пользователь ещё не зарегистрирован, регистрируем, иначе отправляем ответ и завершаем соединение.
             if message[USER][ACCOUNT_NAME] not in self.names.keys():
                 self.names[message[USER][ACCOUNT_NAME]] = client
+                client_ip, client_port = client.getpeername()
+                self.storage.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
                 send_message(client, RESPONSE_200)
             else:
                 response = RESPONSE_400
@@ -127,6 +169,7 @@ class Server(metaclass=ServerVerifier):
             return
         # Если клиент выходит
         elif ACTION in message and message[ACTION] == EXIT and ACCOUNT_NAME in message:
+            self.storage.user_logout(message[ACCOUNT_NAME])
             self.clients.remove(self.names[ACCOUNT_NAME])
             self.names[ACCOUNT_NAME].close()
             del self.names[ACCOUNT_NAME]
@@ -163,8 +206,11 @@ def parse_args():
 
 
 def run():
-    args = parse_args()
-    server = Server(args.addr, args.port)
+    param = parse_args()
+
+    database = ServerStorage()
+
+    server = Server(param.addr, param.port, database)
     server.start()
 
 

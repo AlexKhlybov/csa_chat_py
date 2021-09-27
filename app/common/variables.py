@@ -1,4 +1,5 @@
 import logging
+from os.path import abspath, dirname, join
 
 # Порт поумолчанию для сетевого ваимодействия
 DEFAULT_PORT = 7777
@@ -14,6 +15,16 @@ MAX_PACKAGE_LENGTH = 1024
 ENCODING = "utf-8"
 # Текущий уровень логирования
 LOGGING_LEVEL = logging.DEBUG
+
+BASEDIR = abspath(dirname(__file__))
+
+
+def create_sqlite_uri(db_name):
+    return "sqlite:///" + join(BASEDIR, db_name)
+
+
+# База данных для хранения данных сервера:
+SERVER_DATABASE = create_sqlite_uri("../db/server_data.db3")
 
 
 # Прококол JIM основные ключи:
