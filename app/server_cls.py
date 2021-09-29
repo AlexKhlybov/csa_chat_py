@@ -23,6 +23,7 @@ class ServerThread(Thread):
         self.daemon = True
         self.storage = storage
 
+
     @try_except_wrapper
     def run(self):
         self.func()
@@ -30,6 +31,7 @@ class ServerThread(Thread):
 
 class Server(metaclass=ServerVerifier):
     __slots__ = ("bind_addr", "_port", "logger", "socket", "clients", "listener", "messages", "names", "storage")
+
 
     TCP = (AF_INET, SOCK_STREAM)
     TIMEOUT = 5
@@ -45,6 +47,7 @@ class Server(metaclass=ServerVerifier):
         # Словарь, содержащий имена пользователей и соответствующие им сокеты.
         self.names = dict()
         self.storage = storage
+
 
     def start(self, request_count=5):
         self.socket = socket(*self.TCP)
@@ -92,6 +95,7 @@ class Server(metaclass=ServerVerifier):
                     print(f"Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}")
             else:
                 print("Команда не распознана.")
+
 
     def listen(self):
         self.logger.info("Запусп прослушки")
@@ -148,6 +152,7 @@ class Server(metaclass=ServerVerifier):
                 self.names[message[USER][ACCOUNT_NAME]] = client
                 client_ip, client_port = client.getpeername()
                 self.storage.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
+
                 send_message(client, RESPONSE_200)
             else:
                 response = RESPONSE_400
@@ -170,6 +175,7 @@ class Server(metaclass=ServerVerifier):
         # Если клиент выходит
         elif ACTION in message and message[ACTION] == EXIT and ACCOUNT_NAME in message:
             self.storage.user_logout(message[ACCOUNT_NAME])
+
             self.clients.remove(self.names[ACCOUNT_NAME])
             self.names[ACCOUNT_NAME].close()
             del self.names[ACCOUNT_NAME]
@@ -211,6 +217,7 @@ def run():
     database = ServerStorage()
 
     server = Server(param.addr, param.port, database)
+
     server.start()
 
 

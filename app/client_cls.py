@@ -121,12 +121,14 @@ class Client(metaclass=ClientVerifier):
     # Функция взаимодействия с пользователем, запрашивает команды, отправляет сообщения
     def user_interactive(self, sock, username):
         self.print_help()
+
         while True:
             command = input("Введите команду: ")
             if command == "message":
                 self.create_message(sock, username)
             elif command == "help":
                 self.print_help()
+
             elif command == "exit":
                 send_message(sock, self.create_exit_message(username))
                 print("Завершение соединения.")
