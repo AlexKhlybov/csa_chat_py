@@ -5,6 +5,7 @@ import unittest
 
 from common.utils import *
 from common.variables import *
+
 from app.common.errors import NonDictInputError
 
 

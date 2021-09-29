@@ -3,6 +3,8 @@ import argparse
 from app.client_cls import Client
 from app.common.variables import (DEFAULT_IP_ADDRESS, DEFAULT_PORT,
                                   DEFAULT_SERVER)
+from app.db.server_db import ServerStorage
+
 from app.server_cls import Server
 
 
@@ -24,7 +26,9 @@ def start():
 if __name__ == "__main__":
     ns = start()
     if ns.type == "server":
-        server = Server(ns.addr, ns.port)
+        db = ServerStorage()
+        server = Server(ns.addr, ns.port, db)
+
         server.start()
     elif ns.type == "client":
         client = Client(ns.addr, ns.port, ns.name)

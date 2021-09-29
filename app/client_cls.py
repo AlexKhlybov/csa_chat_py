@@ -30,18 +30,6 @@ class ClientThread(Thread):
         self.func(self.sock, self.name)
 
 
-# Функция выводящяя справку по использованию.
-def print_help():
-    txt = (
-        "=================HELPER===================\n"
-        "Поддерживаемые команды:\n"
-        "message - отправить сообщение. Кому и текст будет запрошены отдельно.\n"
-        "help - вывести подсказки по командам\n"
-        "exit - выход из программы\n"
-    )
-    print(txt)
-
-
 class Client(metaclass=ClientVerifier):
     __slots__ = ("_addr", "_port", "name", "logger", "socket", "connected", "listener", "sender", "user_interface")
 
@@ -66,6 +54,17 @@ class Client(metaclass=ClientVerifier):
     def start(self):
         self.socket = socket(*self.TCP)
         self.connect()
+
+    # Функция выводящяя справку по использованию.
+    def print_help(self):
+        txt = (
+            "=================HELPER===================\n"
+            "Поддерживаемые команды:\n"
+            "message - отправить сообщение. Кому и текст будет запрошены отдельно.\n"
+            "help - вывести подсказки по командам\n"
+            "exit - выход из программы\n"
+        )
+        print(txt)
 
     @try_except_wrapper
     def connect(self):
@@ -121,13 +120,15 @@ class Client(metaclass=ClientVerifier):
     @log
     # Функция взаимодействия с пользователем, запрашивает команды, отправляет сообщения
     def user_interactive(self, sock, username):
-        print_help()
+        self.print_help()
+
         while True:
             command = input("Введите команду: ")
             if command == "message":
                 self.create_message(sock, username)
             elif command == "help":
-                print_help()
+                self.print_help()
+
             elif command == "exit":
                 send_message(sock, self.create_exit_message(username))
                 print("Завершение соединения.")
@@ -199,6 +200,7 @@ def parse_args():
 
 def run():
     args = parse_args()
+
     client = Client(args.addr, args.port)
     client.start()
 
