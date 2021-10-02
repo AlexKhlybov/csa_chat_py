@@ -1,11 +1,47 @@
-2021-09-25 13:24:54,398 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-09-25 13:24:54,399 INFO server_cls.py Запусп прослушки
-2021-09-25 13:24:54,400 INFO server_cls.py Запусп прослушки
-2021-09-25 13:26:14,918 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 52595)
-2021-09-25 13:26:14,978 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1632565574.918624, 'user': {'account_name': 'Alex'}}
-2021-09-25 13:26:51,139 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 52597)
-2021-09-25 13:26:51,176 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1632565611.139067, 'user': {'account_name': 'Max'}}
-2021-09-25 13:27:03,224 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'message', 'from': 'Max', 'to': 'Alex', 'time': 1632565622.919749, 'mess_text': 'Hello'}
-2021-09-25 13:27:03,224 INFO server_cls.py Отправлено сообщение пользователю Alex от пользователя Max.
-2021-09-25 13:27:09,767 INFO server_cls.py Клиент ('127.0.0.1', 52597) отключился от сервера.
-2021-09-25 13:27:10,270 INFO server_cls.py Клиент ('127.0.0.1', 52595) отключился от сервера.
+2021-10-02 13:46:06,798 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 13:46:06,799 INFO server_cls.py Запусп прослушки
+2021-10-02 13:47:43,331 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 13:47:43,331 INFO server_cls.py Запусп прослушки
+2021-10-02 22:16:55,288 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 22:18:25,717 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 22:18:25,718 INFO server_cls.py Запусп прослушки
+2021-10-02 22:33:12,603 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 22:33:12,603 INFO server_cls.py Запусп прослушки
+2021-10-02 22:34:09,516 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 22:34:09,517 INFO server_cls.py Запусп прослушки
+2021-10-02 22:35:08,276 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 22:35:08,277 INFO server_cls.py Запусп прослушки
+2021-10-02 23:13:33,630 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 23:13:33,631 INFO server_cls.py Запусп прослушки
+2021-10-02 23:15:12,687 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 23:15:12,687 INFO server_cls.py Запусп прослушки
+2021-10-02 23:16:43,994 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 23:16:43,995 INFO server_cls.py Запусп прослушки
+2021-10-02 23:17:16,347 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 61645)
+2021-10-02 23:17:16,849 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633205836.347488, 'user': {'account_name': 'Alex'}}
+2021-10-02 23:17:16,854 ERROR decos.py (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140735512814464 and this is thread id 123145472376832.
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT "Users".id AS "Users_id", "Users".name AS "Users_name", "Users".last_login AS "Users_last_login" 
+FROM "Users" 
+WHERE "Users".name = ?) AS anon_1]
+[parameters: [{}]]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2021-10-02 23:25:38,547 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 23:25:38,547 INFO server_cls.py Запусп прослушки
+2021-10-02 23:27:46,041 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 23:27:46,042 INFO server_cls.py Запусп прослушки
+2021-10-02 23:34:59,995 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 23:34:59,995 INFO server_cls.py Запусп прослушки
+2021-10-02 23:36:15,081 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-02 23:36:15,081 INFO server_cls.py Запусп прослушки
+2021-10-02 23:36:33,936 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 61710)
+2021-10-02 23:36:34,439 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633206993.9367292, 'user': {'account_name': 'Alex'}}
+2021-10-02 23:36:34,444 ERROR decos.py (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140735512814464 and this is thread id 123145469480960.
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT "Users".id AS "Users_id", "Users".name AS "Users_name", "Users".last_login AS "Users_last_login" 
+FROM "Users" 
+WHERE "Users".name = ?) AS anon_1]
+[parameters: [{}]]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2021-10-03 00:53:50,699 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-03 00:53:50,700 INFO server_cls.py Запусп прослушки

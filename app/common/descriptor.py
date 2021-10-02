@@ -1,5 +1,7 @@
 import ipaddress
 
+from app.common import variables
+
 
 class Port:
     def __init__(self, name):

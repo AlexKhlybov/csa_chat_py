@@ -19,8 +19,8 @@ LOGGING_LEVEL = logging.DEBUG
 BASEDIR = abspath(dirname(__file__))
 
 
-def create_sqlite_uri(db_name):
-    return "sqlite:///" + join(BASEDIR, db_name)
+def create_sqlite_uri(path):
+    return "sqlite:///" + join(BASEDIR, path)
 
 
 # База данных для хранения данных сервера:

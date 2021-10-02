@@ -196,3 +196,19 @@ Hello
 2021-09-25 13:27:03,224 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 52595), raddr=('127.0.0.1', 7777)>,) , {}. Вызов из модуля app.common.utils
 2021-09-25 13:27:09,767 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52597)>,) , {}. Вызов из модуля app.common.utils
 2021-09-25 13:27:10,270 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52595)>,) , {}. Вызов из модуля app.common.utils
+2021-10-02 23:17:16,346 INFO client_cls.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1 , порт: 7777, имя пользователя: Alex
+2021-10-02 23:17:16,347 DEBUG decos.py Была вызвана функция create_presence c параметрами (<app.client_cls.Client object at 0x109dec900>,) , {}. Вызов из модуля app.client_cls
+2021-10-02 23:17:16,347 DEBUG client_cls.py Сформировано presence сообщение для пользователя Alex
+2021-10-02 23:17:16,347 DEBUG decos.py Была вызвана функция send_message c параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61645), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1633205836.347488, 'user': {'account_name': 'Alex'}}) , {}. Вызов из модуля app.common.utils
+2021-10-02 23:17:16,348 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61645), raddr=('127.0.0.1', 7777)>,) , {}. Вызов из модуля app.common.utils
+2021-10-02 23:17:16,848 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=15, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61645)>,) , {}. Вызов из модуля app.common.utils
+2021-10-02 23:17:32,248 CRITICAL decos.py Не удалось декодировать полученную Json строку.
+2021-10-02 23:17:32,248 CRITICAL decos.py Expecting value: line 1 column 1 (char 0)
+2021-10-02 23:36:33,935 INFO client_cls.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1 , порт: 7777, имя пользователя: Alex
+2021-10-02 23:36:33,936 DEBUG decos.py Была вызвана функция create_presence c параметрами (<app.client_cls.Client object at 0x10ba46f90>,) , {}. Вызов из модуля app.client_cls
+2021-10-02 23:36:33,936 DEBUG client_cls.py Сформировано presence сообщение для пользователя Alex
+2021-10-02 23:36:33,936 DEBUG decos.py Была вызвана функция send_message c параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61710), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1633206993.9367292, 'user': {'account_name': 'Alex'}}) , {}. Вызов из модуля app.common.utils
+2021-10-02 23:36:33,937 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61710), raddr=('127.0.0.1', 7777)>,) , {}. Вызов из модуля app.common.utils
+2021-10-02 23:36:34,438 DEBUG decos.py Была вызвана функция get_message c параметрами (<socket.socket fd=15, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61710)>,) , {}. Вызов из модуля app.common.utils
+2021-10-02 23:36:53,176 CRITICAL decos.py Не удалось декодировать полученную Json строку.
+2021-10-02 23:36:53,176 CRITICAL decos.py Expecting value: line 1 column 1 (char 0)

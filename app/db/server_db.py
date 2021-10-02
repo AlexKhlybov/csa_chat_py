@@ -1,6 +1,5 @@
 import datetime
 
-from icecream import ic
 from sqlalchemy import (Column, DateTime, ForeignKey, Integer, MetaData,
                         String, Table, create_engine)
 from sqlalchemy.orm import mapper, sessionmaker
@@ -31,8 +30,24 @@ class ServerStorage:
             self.ip = ip
             self.port = port
 
-    def __init__(self):
-        self.database_engine = create_engine(SERVER_DATABASE, echo=False, pool_recycle=7200)
+    class UsersContacts:
+        def __init__(self, user, contact):
+            self.id = None
+            self.user = user
+            self.contact = contact
+
+    class UsersHostory:
+        def __init__(self, user):
+            self.id = None
+            self.user = user
+            self.sent = 0
+            self.accepted = 0
+
+    def __init__(self, path):
+        from icecream import ic
+
+        ic(path)
+        self.database_engine = create_engine(path, echo=False, pool_recycle=7200)
         self.metadata = MetaData()
 
         user_table = Table(
@@ -48,7 +63,7 @@ class ServerStorage:
             self.metadata,
             Column("id", Integer, primary_key=True),
             Column("user", ForeignKey("Users.id")),
-            Column("ip_addtess", String),
+            Column("ip_address", String),
             Column("port", Integer),
             Column("login_time", DateTime),
         )
@@ -63,11 +78,30 @@ class ServerStorage:
             Column("port", Integer),
         )
 
+        contacts = Table(
+            "Contacts",
+            self.metadata,
+            Column("id", Integer, primary_key=True),
+            Column("user", ForeignKey("Users.id")),
+            Column("contact", ForeignKey("Users.id")),
+        )
+
+        users_history_table = Table(
+            "Hostory",
+            self.metadata,
+            Column("id", Integer, primary_key=True),
+            Column("user", ForeignKey("Users.id")),
+            Column("sent", Integer),
+            Column("accepted", Integer),
+        )
+
         self.metadata.create_all(self.database_engine)
 
         mapper(self.AllUsers, user_table)
         mapper(self.ActiveUsers, acitve_user_table)
         mapper(self.LoginHistory, user_login_history)
+        mapper(self.UsersContacts, contacts)
+        mapper(self.UsersHostory, users_history_table)
 
         Session = sessionmaker(bind=self.database_engine)
         self.session = Session()
@@ -76,7 +110,6 @@ class ServerStorage:
         self.session.commit()
 
     def user_login(self, username, ip_address, port):
-        print(username, ip_address, port)
         rez = self.session.query(self.AllUsers).filter_by(name=username)
         if rez.count():
             user = rez.first()
@@ -97,6 +130,53 @@ class ServerStorage:
     def user_logout(self, username):
         user = self.session.query(self.AllUsers).filter_by(user=username).first()
         self.session.query(self.ActiveUsers).fiter_by(user=user.id).delete()
+        self.session.commit()
+
+        # Функция фиксирует передачу сообщения и делает соответствующие отметки в БД
+
+    def process_message(self, sender, recipient):
+        # Получаем ID отправителя и получателя
+        sender = self.session.query(self.AllUsers).filter_by(name=sender).first().id
+        recipient = self.session.query(self.AllUsers).filter_by(name=recipient).first().id
+        # Запрашиваем строки из истории и увеличиваем счётчики
+        sender_row = self.session.query(self.UsersHistory).filter_by(user=sender).first()
+        sender_row.sent += 1
+        recipient_row = self.session.query(self.UsersHistory).filter_by(user=recipient).first()
+        recipient_row.accepted += 1
+
+        self.session.commit()
+
+    # Функция добавляет контакт для пользователя.
+    def add_contact(self, user, contact):
+        # Получаем ID пользователей
+        user = self.session.query(self.AllUsers).filter_by(name=user).first()
+        contact = self.session.query(self.AllUsers).filter_by(name=contact).first()
+
+        # Проверяем что не дубль и что контакт может существовать (полю пользователь мы доверяем)
+        if not contact or self.session.query(self.UsersContacts).filter_by(user=user.id, contact=contact.id).count():
+            return
+
+        # Создаём объект и заносим его в базу
+        contact_row = self.UsersContacts(user.id, contact.id)
+        self.session.add(contact_row)
+        self.session.commit()
+
+    # Функция удаляет контакт из базы данных
+    def remove_contact(self, user, contact):
+        # Получаем ID пользователей
+        user = self.session.query(self.AllUsers).filter_by(name=user).first()
+        contact = self.session.query(self.AllUsers).filter_by(name=contact).first()
+
+        # Проверяем что контакт может существовать (полю пользователь мы доверяем)
+        if not contact:
+            return
+
+        # Удаляем требуемое
+        print(
+            self.session.query(self.UsersContacts)
+            .filter(self.UsersContacts.user == user.id, self.UsersContacts.contact == contact.id)
+            .delete()
+        )
         self.session.commit()
 
     def user_list(self):
@@ -121,15 +201,36 @@ class ServerStorage:
             query = query.filter(self.AllUsers.name == username)
         return query.all()
 
+        # Функция возвращает список контактов пользователя.
+
+    def get_contacts(self, username):
+        # Запрашивааем указанного пользователя
+        user = self.session.query(self.AllUsers).filter_by(name=username).one()
+
+        # Запрашиваем его список контактов
+        query = (
+            self.session.query(self.UsersContacts, self.AllUsers.name)
+            .filter_by(user=user.id)
+            .join(self.AllUsers, self.UsersContacts.contact == self.AllUsers.id)
+        )
+
+        # выбираем только имена пользователей и возвращаем их.
+        return [contact[1] for contact in query.all()]
+
+    # Функция возвращает количество переданных и полученных сообщений
+    def message_history(self):
+        query = self.session.query(
+            self.AllUsers.name, self.AllUsers.last_login, self.UsersHistory.sent, self.UsersHistory.accepted
+        ).join(self.AllUsers)
+        # Возвращаем список кортежей
+        return query.all()
+
 
 if __name__ == "__main__":
     test_db = ServerStorage()
     test_db.user_login("client_1", "192.168.1.4", 8888)
     test_db.user_login("client_2", "192.168.1.5", 7777)
-    ic(test_db.active_user_list())
 
     test_db.user_logout("client_1")
-    ic(test_db.active_user_list())
 
     test_db.login_history("client_1")
-    ic(test_db.user_list())

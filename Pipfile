@@ -9,6 +9,7 @@ tabulate = "*"
 icecream = "*"
 flake8 = "*"
 sqlalchemy = "*"
+pyqt5 = "*"
 
 [dev-packages]
 
