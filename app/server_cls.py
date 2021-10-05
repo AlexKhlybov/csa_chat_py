@@ -37,7 +37,7 @@ class ServerThread(Thread):
         self.daemon = True
         self.storage = storage
 
-    @try_except_wrapper
+    # @try_except_wrapper
     def run(self):
         self.func()
 
@@ -137,6 +137,7 @@ class Server(metaclass=ServerVerifier):
                     try:
                         self.process_client_message(get_message(client_with_message), client_with_message)
                     except:
+                        ic(client_with_message.getpeername())
                         self.logger.info(f"Клиент {client_with_message.getpeername()} отключился от сервера.")
                         self.clients.remove(client_with_message)
 
@@ -152,7 +153,7 @@ class Server(metaclass=ServerVerifier):
 
     # Обработчик сообщений от клиентов, принимает словарь - сообщение от клиента, проверяет корректность, отправляет
     # словарь-ответ в случае необходимости.
-    @try_except_wrapper
+    # @try_except_wrapper
     def process_client_message(self, message, client):
         self.logger.debug(f"Разбор сообщения от клиента : {message}")
         # Если это сообщение о присутствии, принимаем и отвечаем
@@ -162,7 +163,6 @@ class Server(metaclass=ServerVerifier):
                 self.names[message[USER][ACCOUNT_NAME]] = client
                 client_ip, client_port = client.getpeername()
                 self.storage.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
-
                 send_message(client, RESPONSE_200)
             else:
                 response = RESPONSE_400

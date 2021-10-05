@@ -36,15 +36,27 @@ SENDER = "from"
 DESTINATION = "to"
 
 # Прочие ключи, используемые в протоколе
-PRESENCE = "presence"
-RESPONSE = "response"
-ERROR = "error"
-MESSAGE = "message"
-MESSAGE_TEXT = "mess_text"
-EXIT = "exit"
+PRESENCE = 'presence'
+RESPONSE = 'response'
+ERROR = 'error'
+MESSAGE = 'message'
+MESSAGE_TEXT = 'mess_text'
+EXIT = 'exit'
+GET_CONTACTS = 'get_contacts'
+LIST_INFO = 'data_list'
+REMOVE_CONTACT = 'remove'
+ADD_CONTACT = 'add'
+USERS_REQUEST = 'get_users'
 
 # Словари - ответы:
 # 200
 RESPONSE_200 = {RESPONSE: 200}
+# 202
+RESPONSE_202 = {RESPONSE: 202,
+                LIST_INFO:None
+                }
 # 400
-RESPONSE_400 = {RESPONSE: 400, ERROR: None}
+RESPONSE_400 = {
+            RESPONSE: 400,
+            ERROR: None
+        }

@@ -1,10 +1,9 @@
 import argparse
 
-from app.client_cls import Client
 from app.common.variables import (DEFAULT_IP_ADDRESS, DEFAULT_PORT,
                                   DEFAULT_SERVER)
-from app.db.server_db import ServerStorage
-from app.server_cls import Server, run
+import app.server_cls as server
+import app.client_cls as client
 
 
 def parse_args():
@@ -25,10 +24,6 @@ def start():
 if __name__ == "__main__":
     ns = start()
     if ns.type == "server":
-        # db = ServerStorage()
-        # server = Server(ns.addr, ns.port, db)
-        # server.start()
-        run(ns.port, ns.addr)
+        server.run(ns.port, ns.addr)
     elif ns.type == "client":
-        client = Client(ns.addr, ns.port, ns.name)
-        client.start()
+        client.main(ns.addr, ns.port, ns.name)

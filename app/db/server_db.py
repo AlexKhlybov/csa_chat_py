@@ -5,6 +5,9 @@ from sqlalchemy import (Column, DateTime, ForeignKey, Integer, MetaData,
 from sqlalchemy.orm import mapper, sessionmaker
 
 from app.common.variables import *
+from app.logs.config_server_log import logger
+
+from icecream import ic
 
 
 class ServerStorage:
@@ -46,8 +49,8 @@ class ServerStorage:
     def __init__(self, path):
         from icecream import ic
 
-        ic(path)
-        self.database_engine = create_engine(path, echo=False, pool_recycle=7200)
+        self.database_engine = create_engine(path, echo=False, pool_recycle=7200,
+                                             connect_args={'check_same_thread': False})
         self.metadata = MetaData()
 
         user_table = Table(
@@ -110,14 +113,18 @@ class ServerStorage:
         self.session.commit()
 
     def user_login(self, username, ip_address, port):
-        rez = self.session.query(self.AllUsers).filter_by(name=username)
-        if rez.count():
-            user = rez.first()
-            user.last_login = datetime.datetime.now()
-        else:
-            user = self.AllUsers(username)
-            self.session.add(user)
-            self.session.commit()
+        rez = self.session.query(self.AllUsers.name).filter_by(name=username)
+        try:
+            if rez.count():
+                user = rez.first()
+                ic(user.last_login)
+                user.last_login = datetime.datetime.now()
+            else:
+                user = self.AllUsers(username)
+                self.session.add(user)
+                self.session.commit()
+        except Exception as e:
+            logger.error(e)
 
         new_active_user = self.ActiveUsers(user.id, ip_address, port, datetime.datetime.now())
         self.session.add(new_active_user)

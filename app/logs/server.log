@@ -1,47 +1,93 @@
-2021-10-02 13:46:06,798 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 13:46:06,799 INFO server_cls.py Запусп прослушки
-2021-10-02 13:47:43,331 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 13:47:43,331 INFO server_cls.py Запусп прослушки
-2021-10-02 22:16:55,288 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 22:18:25,717 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 22:18:25,718 INFO server_cls.py Запусп прослушки
-2021-10-02 22:33:12,603 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 22:33:12,603 INFO server_cls.py Запусп прослушки
-2021-10-02 22:34:09,516 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 22:34:09,517 INFO server_cls.py Запусп прослушки
-2021-10-02 22:35:08,276 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 22:35:08,277 INFO server_cls.py Запусп прослушки
-2021-10-02 23:13:33,630 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 23:13:33,631 INFO server_cls.py Запусп прослушки
-2021-10-02 23:15:12,687 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 23:15:12,687 INFO server_cls.py Запусп прослушки
-2021-10-02 23:16:43,994 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 23:16:43,995 INFO server_cls.py Запусп прослушки
-2021-10-02 23:17:16,347 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 61645)
-2021-10-02 23:17:16,849 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633205836.347488, 'user': {'account_name': 'Alex'}}
-2021-10-02 23:17:16,854 ERROR decos.py (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140735512814464 and this is thread id 123145472376832.
-[SQL: SELECT count(*) AS count_1 
-FROM (SELECT "Users".id AS "Users_id", "Users".name AS "Users_name", "Users".last_login AS "Users_last_login" 
-FROM "Users" 
-WHERE "Users".name = ?) AS anon_1]
-[parameters: [{}]]
-(Background on this error at: https://sqlalche.me/e/14/f405)
-2021-10-02 23:25:38,547 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 23:25:38,547 INFO server_cls.py Запусп прослушки
-2021-10-02 23:27:46,041 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 23:27:46,042 INFO server_cls.py Запусп прослушки
-2021-10-02 23:34:59,995 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 23:34:59,995 INFO server_cls.py Запусп прослушки
-2021-10-02 23:36:15,081 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-02 23:36:15,081 INFO server_cls.py Запусп прослушки
-2021-10-02 23:36:33,936 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 61710)
-2021-10-02 23:36:34,439 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633206993.9367292, 'user': {'account_name': 'Alex'}}
-2021-10-02 23:36:34,444 ERROR decos.py (sqlite3.ProgrammingError) SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 140735512814464 and this is thread id 123145469480960.
-[SQL: SELECT count(*) AS count_1 
-FROM (SELECT "Users".id AS "Users_id", "Users".name AS "Users_name", "Users".last_login AS "Users_last_login" 
-FROM "Users" 
-WHERE "Users".name = ?) AS anon_1]
-[parameters: [{}]]
-(Background on this error at: https://sqlalche.me/e/14/f405)
-2021-10-03 00:53:50,699 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
-2021-10-03 00:53:50,700 INFO server_cls.py Запусп прослушки
+2021-10-04 21:40:57,761 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-04 21:40:57,762 INFO server_cls.py Запусп прослушки
+2021-10-04 21:41:16,474 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64418)
+2021-10-04 21:41:16,981 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633372876.475179, 'user': {'account_name': 'Alex'}}
+2021-10-04 21:41:16,999 INFO server_cls.py Клиент ('127.0.0.1', 64418) отключился от сервера.
+2021-10-04 21:45:37,723 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64447)
+2021-10-04 21:45:48,224 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633373137.7233028, 'user': {'account_name': 'Max'}}
+2021-10-04 21:45:48,231 INFO server_cls.py Клиент ('127.0.0.1', 64447) отключился от сервера.
+2021-10-04 21:46:48,846 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-04 21:46:48,847 INFO server_cls.py Запусп прослушки
+2021-10-04 21:46:56,881 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64457)
+2021-10-04 21:46:57,385 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633373216.881336, 'user': {'account_name': 'Alex'}}
+2021-10-04 21:46:57,394 INFO server_cls.py Клиент ('127.0.0.1', 64457) отключился от сервера.
+2021-10-04 21:47:28,599 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64458)
+2021-10-04 21:47:29,104 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633373248.599851, 'user': {'account_name': 'Max'}}
+2021-10-04 21:47:29,106 INFO server_cls.py Клиент ('127.0.0.1', 64458) отключился от сервера.
+2021-10-04 21:51:55,304 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64530)
+2021-10-04 21:52:05,196 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633373515.304368, 'user': {'account_name': 'Den'}}
+2021-10-04 21:52:05,198 INFO server_cls.py Клиент ('127.0.0.1', 64530) отключился от сервера.
+2021-10-04 21:52:36,181 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64532)
+2021-10-04 21:52:46,682 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633373556.181393, 'user': {'account_name': 'Ddddd'}}
+2021-10-04 21:52:46,684 INFO server_cls.py Клиент ('127.0.0.1', 64532) отключился от сервера.
+2021-10-04 21:53:31,861 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-04 21:53:31,862 INFO server_cls.py Запусп прослушки
+2021-10-04 21:53:41,938 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64544)
+2021-10-04 21:53:42,442 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633373621.938518, 'user': {'account_name': 'gdfdg'}}
+2021-10-04 21:53:42,454 INFO server_cls.py Клиент ('127.0.0.1', 64544) отключился от сервера.
+2021-10-04 21:56:11,415 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-04 21:56:11,415 INFO server_cls.py Запусп прослушки
+2021-10-04 21:56:21,174 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64581)
+2021-10-04 21:56:21,677 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633373781.174727, 'user': {'account_name': 'asdf'}}
+2021-10-04 21:56:21,688 INFO server_cls.py Клиент ('127.0.0.1', 64581) отключился от сервера.
+2021-10-04 21:59:05,075 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-04 21:59:05,075 INFO server_cls.py Запусп прослушки
+2021-10-04 21:59:12,709 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 64601)
+2021-10-04 21:59:13,212 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633373952.7100449, 'user': {'account_name': 'asdf'}}
+2021-10-04 21:59:13,309 INFO server_cls.py Клиент ('127.0.0.1', 64601) отключился от сервера.
+2021-10-05 10:07:27,696 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-05 10:07:27,697 INFO server_cls.py Запусп прослушки
+2021-10-05 10:07:47,088 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 51692)
+2021-10-05 10:07:47,594 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633417667.0884328, 'user': {'account_name': 'Alex'}}
+2021-10-05 10:07:48,207 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_users', 'time': 1633417667.7346098, 'account_name': 'Alex'}
+2021-10-05 10:07:48,708 INFO server_cls.py Клиент ('127.0.0.1', 51692) отключился от сервера.
+2021-10-05 10:10:12,601 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 51703)
+2021-10-05 10:10:23,102 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633417812.601252, 'user': {'account_name': 'Max'}}
+2021-10-05 10:13:30,982 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-05 10:13:30,983 INFO server_cls.py Запусп прослушки
+2021-10-05 10:13:41,426 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 51718)
+2021-10-05 10:13:41,932 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633418021.42644, 'user': {'account_name': 'dfdf'}}
+2021-10-05 10:13:42,558 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_users', 'time': 1633418022.0873501, 'account_name': 'dfdf'}
+2021-10-05 10:13:43,063 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_contacts', 'time': 1633418022.559403, 'user': 'dfdf'}
+2021-10-05 10:13:43,585 INFO server_cls.py Клиент ('127.0.0.1', 51718) отключился от сервера.
+2021-10-05 10:15:10,038 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-05 10:15:10,038 INFO server_cls.py Запусп прослушки
+2021-10-05 10:15:16,471 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 51728)
+2021-10-05 10:15:16,972 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633418116.4712389, 'user': {'account_name': 'лод'}}
+2021-10-05 10:15:17,586 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_users', 'time': 1633418117.113767, 'account_name': 'лод'}
+2021-10-05 10:15:18,089 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_contacts', 'time': 1633418117.587816, 'user': 'лод'}
+2021-10-05 10:16:27,263 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 51730)
+2021-10-05 10:16:37,764 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633418187.263571, 'user': {'account_name': 'Alex'}}
+2021-10-05 10:16:37,797 INFO server_cls.py Клиент ('127.0.0.1', 51730) отключился от сервера.
+2021-10-05 10:19:54,605 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 51743)
+2021-10-05 10:20:05,107 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633418394.605762, 'user': {'account_name': 'sadf'}}
+2021-10-05 13:14:45,249 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-05 13:14:45,250 INFO server_cls.py Запусп прослушки
+2021-10-05 13:15:08,214 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 51964)
+2021-10-05 13:15:08,716 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633428908.214305, 'user': {'account_name': 'Alex'}}
+2021-10-05 13:15:08,837 INFO server_cls.py Клиент ('127.0.0.1', 51964) отключился от сервера.
+2021-10-05 13:26:40,297 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-05 13:26:40,297 INFO server_cls.py Запусп прослушки
+2021-10-05 13:27:06,980 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 52032)
+2021-10-05 13:27:07,485 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633429626.9800918, 'user': {'account_name': 'asd'}}
+2021-10-05 13:27:08,102 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_users', 'time': 1633429627.6340559, 'account_name': 'asd'}
+2021-10-05 13:27:08,605 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_contacts', 'time': 1633429628.103122, 'user': 'asd'}
+2021-10-05 13:28:13,887 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 52033)
+2021-10-05 13:28:24,388 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633429693.8871648, 'user': {'account_name': 'Max'}}
+2021-10-05 13:28:24,421 INFO server_cls.py Клиент ('127.0.0.1', 52033) отключился от сервера.
+2021-10-05 13:31:52,274 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-05 13:31:52,275 INFO server_cls.py Запусп прослушки
+2021-10-05 13:32:17,485 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-05 13:32:17,485 INFO server_cls.py Запусп прослушки
+2021-10-05 13:32:25,186 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 52052)
+2021-10-05 13:32:25,691 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633429945.186392, 'user': {'account_name': 'Alex'}}
+2021-10-05 13:32:26,322 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_users', 'time': 1633429945.847169, 'account_name': 'Alex'}
+2021-10-05 13:32:26,825 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'get_contacts', 'time': 1633429946.323136, 'user': 'Alex'}
+2021-10-05 13:33:43,614 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 52055)
+2021-10-05 13:33:54,115 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633430023.614783, 'user': {'account_name': 'Max'}}
+2021-10-05 13:35:47,139 INFO server_cls.py Порт сервера - 7777| адресс - 127.0.0.1
+2021-10-05 13:35:47,139 INFO server_cls.py Запусп прослушки
+2021-10-05 13:36:10,979 INFO server_cls.py Установлено соединение с ПК ('127.0.0.1', 52074)
+2021-10-05 13:36:11,484 DEBUG server_cls.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1633430170.979588, 'user': {'account_name': 'Alex'}}
+2021-10-05 13:36:11,491 ERROR server_db.py Could not locate column in row for column 'last_login'
+2021-10-05 13:36:11,508 INFO server_cls.py Клиент ('127.0.0.1', 52074) отключился от сервера.
