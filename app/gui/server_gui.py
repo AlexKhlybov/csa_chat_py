@@ -31,7 +31,7 @@ def gui_create_model(database):
 # GUI - Функция реализующая заполнение таблицы историей сообщений.
 def create_stat_model(database):
     # Список записей из базы
-    hist_list = database.login_history()
+    hist_list = database.message_history()
 
     # Объект модели данных:
     list = QStandardItemModel()

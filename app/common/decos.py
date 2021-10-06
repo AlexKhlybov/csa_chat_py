@@ -1,8 +1,8 @@
 import json
 import sys
 
-import app.logs.config_client_log as srv_log
-import app.logs.config_server_log as cli_log
+import logs.config_client_log as srv_log
+import logs.config_server_log as cli_log
 
 from .errors import ReqFieldMissingError, ServerError
 

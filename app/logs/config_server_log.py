@@ -5,7 +5,7 @@ import logging
 import logging.handlers
 import os
 
-from ..common.variables import LOGGING_LEVEL
+from common.variables import LOGGING_LEVEL
 
 # создаём формировщик логов (formatter):
 server_formatter = logging.Formatter("%(asctime)s %(levelname)s %(filename)s %(message)s")

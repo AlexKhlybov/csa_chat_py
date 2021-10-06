@@ -19,12 +19,12 @@ LOGGING_LEVEL = logging.DEBUG
 BASEDIR = abspath(dirname(__file__))
 
 
-def create_sqlite_uri(path):
-    return "sqlite:///" + join(BASEDIR, path)
+def create_sqlite_uri(path, name):
+    return "sqlite:///" + join(BASEDIR, f'../{name}/{path}')
 
 
 # База данных для хранения данных сервера:
-SERVER_DATABASE = create_sqlite_uri("../db/server_data.db3")
+SERVER_DATABASE = create_sqlite_uri('server_data.db3', 'server')
 
 
 # Прококол JIM основные ключи:

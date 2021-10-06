@@ -1,12 +1,7 @@
 import ipaddress
 
-from app.common import variables
-
 
 class Port:
-    def __init__(self, name):
-        self.name = name
-
     def __get__(self, instance, owner):
         return getattr(instance, self.name)
 
@@ -15,6 +10,9 @@ class Port:
             instance.logger.critical(f"Попытка запуска с указанием неподходящего порта {value}.")
             raise ValueError(f"Ошибка пората. Порт: {value} недопустимый, введите порт в диапазоне с 1024 до 65535")
         setattr(instance, self.name, value)
+        
+    def __set_name__(self, owner, name):
+        self.name = name
 
 
 class Addr:

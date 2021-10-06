@@ -3,9 +3,10 @@ import datetime
 from sqlalchemy import (Column, DateTime, ForeignKey, Integer, MetaData,
                         String, Table, create_engine)
 from sqlalchemy.orm import mapper, sessionmaker
+from sqlalchemy.sql.functions import user
 
-from app.common.variables import *
-from app.logs.config_server_log import logger
+from common.variables import *
+from logs.config_server_log import logger
 
 from icecream import ic
 
@@ -39,7 +40,7 @@ class ServerStorage:
             self.user = user
             self.contact = contact
 
-    class UsersHostory:
+    class UsersHistory:
         def __init__(self, user):
             self.id = None
             self.user = user
@@ -90,7 +91,7 @@ class ServerStorage:
         )
 
         users_history_table = Table(
-            "Hostory",
+            "History",
             self.metadata,
             Column("id", Integer, primary_key=True),
             Column("user", ForeignKey("Users.id")),
@@ -104,7 +105,7 @@ class ServerStorage:
         mapper(self.ActiveUsers, acitve_user_table)
         mapper(self.LoginHistory, user_login_history)
         mapper(self.UsersContacts, contacts)
-        mapper(self.UsersHostory, users_history_table)
+        mapper(self.UsersHistory, users_history_table)
 
         Session = sessionmaker(bind=self.database_engine)
         self.session = Session()
@@ -113,18 +114,14 @@ class ServerStorage:
         self.session.commit()
 
     def user_login(self, username, ip_address, port):
-        rez = self.session.query(self.AllUsers.name).filter_by(name=username)
-        try:
-            if rez.count():
-                user = rez.first()
-                ic(user.last_login)
-                user.last_login = datetime.datetime.now()
-            else:
-                user = self.AllUsers(username)
-                self.session.add(user)
-                self.session.commit()
-        except Exception as e:
-            logger.error(e)
+        rez = self.session.query(self.AllUsers).filter_by(name=username)
+        if rez.count():
+            user = rez.first()
+            user.last_login = datetime.datetime.now()
+        else:
+            user = self.AllUsers(username)
+            self.session.add(user)
+            self.session.commit()
 
         new_active_user = self.ActiveUsers(user.id, ip_address, port, datetime.datetime.now())
         self.session.add(new_active_user)
@@ -139,16 +136,19 @@ class ServerStorage:
         self.session.query(self.ActiveUsers).fiter_by(user=user.id).delete()
         self.session.commit()
 
-        # Функция фиксирует передачу сообщения и делает соответствующие отметки в БД
-
+    # Функция фиксирует передачу сообщения и делает соответствующие отметки в БД
     def process_message(self, sender, recipient):
         # Получаем ID отправителя и получателя
         sender = self.session.query(self.AllUsers).filter_by(name=sender).first().id
         recipient = self.session.query(self.AllUsers).filter_by(name=recipient).first().id
         # Запрашиваем строки из истории и увеличиваем счётчики
         sender_row = self.session.query(self.UsersHistory).filter_by(user=sender).first()
+        if not sender_row:
+            sender_row = self.UsersHistory(user=user)
         sender_row.sent += 1
         recipient_row = self.session.query(self.UsersHistory).filter_by(user=recipient).first()
+        if not recipient_row:
+            recipient_row = self.UsersHistory(user=user)
         recipient_row.accepted += 1
 
         self.session.commit()
